@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Slide show</title>
+</head>
+<body>
+  <div id="slide-block"> 
+    <img src="" alt="" id="slide">
+    <div class="btn-holder">
+        <button id="prev"><i class="fa-solid fa-backward"><<</i></button>
+        <button id="next"><i class="fa-solid fa-angles-right">>></i></button>
+    </div>
+    <div class="btn-holder">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+    </div>
+   </div>
+</body>
+<script>
+let prev = document.getElementById("prev");
+let startBtn = document.getElementById("start");
+let stopBtn = document.getElementById("stop");
+let next = document.getElementById("next");
+
+let imageArr = [
+"https://e0.pxfuel.com/wallpapers/116/85/desktop-wallpaper-tulips-computer-flowers-for-your-mobile-tablet-explore-tulips-for-tulip-tulips-for-computer-spring-yellow-tulips.jpg",
+  "https://4kwallpapers.com/images/walls/thumbs_2t/13152.jpg",
+  "https://www.techbuzzonline.com/wp-content/uploads/2018/04/37-flowers-blue-petals_th-800x450.jpg",
+  "https://w0.peakpx.com/wallpaper/408/770/HD-wallpaper-white-flower-white-flowers.jpg",
+  "https://c4.wallpaperflare.com/wallpaper/185/386/363/flowers-4k-pc-hd-wallpaper-preview.jpg",
+  "https://c4.wallpaperflare.com/wallpaper/132/637/154/rose-flower-pc-hd-download-wallpaper-preview.jpg",
+  "https://wallpapershome.com/images/pages/ico_h/5346.jpg",
+  "https://w0.peakpx.com/wallpaper/594/1/HD-wallpaper-red-pearls-flowers-tree-branches-flowers.jpg",
+  "https://w0.peakpx.com/wallpaper/415/137/HD-wallpaper-man-made-book-flower.jpg",
+  "https://w0.peakpx.com/wallpaper/796/974/HD-wallpaper-closeup-view-of-green-grass-field-and-pink-blossom-flowers-tree-branches-nature.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsbHoi4GzXM1bCwPfqEXVg-nvZtoIx5VGzpg&usqp=CAU",
+  "https://w0.peakpx.com/wallpaper/481/499/HD-wallpaper-flowering-vines-overgrowing-on-a-facade-windows-hose-flowers-vines-door.jpg",
+  "https://w0.peakpx.com/wallpaper/166/544/HD-wallpaper-fragrant-roses-bouquet-fragrant-flowers-nature-roses.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa5MLXosvi1t2wduPoOSd_-YUQvrlyW4FbqQ&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGiHTFlLbmnALEEM_WD9SA452klLurdd69-A&usqp=CAU",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP-Pq-LabY3sj4NQrEyZSOdHsIsEl6PbpuuZehnTPrJILsKIAblyaPkFTCR3dLeAXnCOA&usqp=CAU",
+  "https://media.odynovotours.com/article/66000/cherry-blossom_65364.jpg",
+  "https://wallpapershome.com/images/pages/ico_h/25495.jpg",
+  "https://cdn11.bigcommerce.com/s-pt9uefr6vs/images/stencil/800x800/uploaded_images/photo-by-luke-jurgella-on-unsplash.jpg?t=1679007255",
+];
+
+let image = document.querySelector("#slide");
+
+let currentImage = 0;
+let intervalId;
+
+function showImage() {
+    image.setAttribute("src", imageArr[currentImage]);
+}
+
+function startSlideshow() {
+    intervalId = setInterval(function () {
+        currentImage++;
+        if (currentImage >= imageArr.length) {
+            currentImage = 0;
+        }
+        showImage();
+    }, 1300); 
+}
+
+function stopSlideshow() {
+    clearInterval(intervalId);
+}
+
+showImage(); 
+
+prev.addEventListener("click", function () {
+    currentImage--;
+    if (currentImage < 0) {
+        currentImage = imageArr.length - 1;
+    }
+    showImage();
+});
+
+next.addEventListener("click", function () {
+    currentImage++;
+    if (currentImage >= imageArr.length) {
+        currentImage = 0;
+    }
+    showImage();
+});
+
+startBtn.addEventListener("click", function () {
+    startSlideshow();
+});
+
+stopBtn.addEventListener("click", function () {
+    stopSlideshow();
+});
+
+</script>
+</html>
